@@ -5,4 +5,6 @@
     <string name="cookies">Cookies clicked</string>
     <string name="title_activity_upgrades">Upgrades</string>
     <string name="button_upgrade">Upgrade click multiplier</string>
+    <string name="button_upgrade_combo_tick">Upgrade combo tick rate</string>
+    <string name="button_upgrade_combo_multiplier">Upgrade combo multiplier</string>
 </resources>
