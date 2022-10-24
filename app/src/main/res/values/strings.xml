@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">labapp</string>
+    <string name="coin"> </string>
+    <string name="comboName">Combo:</string>
+    <string name="cookies">Cookies clicked</string>
+    <string name="title_activity_upgrades">Upgrades</string>
+    <string name="button_upgrade">Upgrade click multiplier</string>
+</resources>
