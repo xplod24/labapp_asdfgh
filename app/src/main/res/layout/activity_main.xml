@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B9F6CA"
+    android:background="#FFEBBC"
     tools:context=".MainActivity">
 
     <TextView
@@ -32,8 +32,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textowo"
         app:layout_constraintVertical_bias="0.054"
-        app:srcCompat="@drawable/cookie"
-        tools:srcCompat="@drawable/cookie" />
+        app:srcCompat="@drawable/cookie_click"
+        tools:srcCompat="@drawable/cookie_click" />
 
     <TextView
         android:id="@+id/comboView"
@@ -89,7 +89,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#00BFA5">
+            android:background="#543D46">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -110,8 +110,10 @@
                     style="@style/Widget.AppCompat.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTintMode="add"
                     android:stateListAnimator="@android:anim/bounce_interpolator"
-                    android:text="@string/button_upgrade" />
+                    android:text="@string/button_upgrade"
+                    app:backgroundTint="#5DA7AE" />
 
                 <TextView
                     android:id="@+id/upgrade1_text"
@@ -133,7 +135,9 @@
                     style="@style/Widget.AppCompat.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/button_upgrade_combo_multiplier" />
+                    android:backgroundTintMode="add"
+                    android:text="@string/button_upgrade_combo_multiplier"
+                    app:backgroundTint="#5DA7AE" />
 
                 <TextView
                     android:id="@+id/upgrade2_text"
@@ -154,7 +158,9 @@
                     style="@style/Widget.AppCompat.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/button_upgrade_combo_tick" />
+                    android:backgroundTintMode="add"
+                    android:text="@string/button_upgrade_combo_tick"
+                    app:backgroundTint="#5DA7AE" />
 
                 <TextView
                     android:id="@+id/upgrade3_text"

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">labapp</string>
+    <string name="app_name">Cookie Clicker Lab</string>
     <string name="coin"> </string>
     <string name="comboName">Combo:</string>
     <string name="cookies">Cookies clicked</string>
