@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val prefs = getSharedPreferences("com.app.labapp", MODE_PRIVATE)
         val aniSlide = AnimationUtils.loadAnimation(this, R.anim.zoom_in)
-        val aniSlide2 = AnimationUtils.loadAnimation(this, R.anim.zoom_out)
         setContentView(R.layout.activity_main)
         var text2 = findViewById<TextView>(R.id.textowo)
         var cookie1 = findViewById<ImageView>(R.id.cookie)
