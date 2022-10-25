@@ -4,6 +4,17 @@
     <string name="comboName">Combo:</string>
     <string name="cookies">Cookies clicked</string>
     <string name="title_activity_upgrades">Upgrades</string>
+
+    //upgrade1
+    <string name="upgrade1lvltext">Current lvl: </string>
+    <string name="upgrade1lvlcost">Next lvl cost: </string>
+    //upgrade2
+    <string name="upgrade2lvltext">Current lvl: </string>
+    <string name="upgrade2lvlcost">Next lvl cost: </string>
+    //upgrade3
+    <string name="upgrade3lvltext">Current lvl: </string>
+    <string name="upgrade3lvlcost">Next lvl cost: </string>
+
     <string name="button_upgrade">Upgrade click multiplier</string>
     <string name="button_upgrade_combo_tick">Upgrade combo tick rate</string>
     <string name="button_upgrade_combo_multiplier">Upgrade combo multiplier</string>

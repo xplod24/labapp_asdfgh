@@ -2,6 +2,7 @@ package com.app.labapp
 
 
 import android.os.Bundle
+import java.util.Formatter
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
@@ -21,16 +22,10 @@ class MainActivity : AppCompatActivity() {
         var text2 = findViewById<TextView>(R.id.textowo)
         var cookie1 = findViewById<ImageView>(R.id.cookie)
         var combos = findViewById<TextView>(R.id.comboView)
-        var upgrade1Text1 = findViewById<TextView>(R.id.upgrade1_text)
-        var upgrade1Text2 = findViewById<TextView>(R.id.upgrade1_text2)
-        var upgrade2Text1 = findViewById<TextView>(R.id.upgrade2_text)
-        var upgrade2Text2 = findViewById<TextView>(R.id.upgrade2_text2)
-        var upgrade3Text1 = findViewById<TextView>(R.id.upgrade3_text)
-        var upgrade3Text2 = findViewById<TextView>(R.id.upgrade3_text2)
         var upgrade1btn = findViewById<Button>(R.id.button_upgrade1)
         var upgrade2btn = findViewById<Button>(R.id.button_upgrade2)
         var upgrade3btn = findViewById<Button>(R.id.button_upgrade3)
-
+        // persistent values
         var upgrade1lvl = prefs.getInt("upgrade1lvl", 0)
         var upgrade2lvl = prefs.getInt("upgrade2lvl", 0)
         var upgrade3lvl = prefs.getInt("upgrade3lvl", 0)
@@ -41,18 +36,28 @@ class MainActivity : AppCompatActivity() {
         var running = prefs.getBoolean("running", false)
         var clicks = prefs.getInt("clicks", 0)
         var tickrate = prefs.getLong("tickrate", 2000)
-        var comboclicks = prefs.getInt("comboclicks", 0)
-        var comboMulti = prefs.getInt("combomulti", 0)
-
-        upgrade1Text1.text = "Current lvl: $upgrade1lvl"
-        upgrade1Text2.text = "Next lvl cost: $upgrade1cost"
-        upgrade2Text1.text = "Current lvl: $upgrade2lvl"
-        upgrade2Text2.text = "Next lvl cost: $upgrade2cost"
-        upgrade3Text1.text = "Current lvl: $upgrade3lvl"
-        upgrade3Text2.text = "Next lvl cost: $upgrade3cost"
+        // TO DO - next upgrade paths
+        // var comboclicks = prefs.getInt("comboclicks", 0)
+        // var comboMulti = prefs.getInt("combomulti", 0)
+        //upgrade 1 texts
+        var str1 = findViewById<TextView>(R.id.upgrade1)
+        var str2 = findViewById<TextView>(R.id.upgrade1_cost)
+        //upgrade 2 texts
+        var str3 = findViewById<TextView>(R.id.upgrade2)
+        var str4 = findViewById<TextView>(R.id.upgrade2_cost)
+        //upgrade 3 texts
+        var str5 = findViewById<TextView>(R.id.upgrade3)
+        var str6 = findViewById<TextView>(R.id.upgrade3_cost)
+        str1.text = "$upgrade1lvl"
+        str2.text = "$upgrade1cost"
+        str3.text = "$upgrade2lvl"
+        str4.text = "$upgrade2cost"
+        str5.text = "$upgrade3lvl"
+        str6.text = "$upgrade3cost"
         text2.text = "$coins"
         combos.text = "$clicks"
 
+        // main clicker start
         cookie1.setOnClickListener{
             if (!running){
                 running = true
@@ -97,6 +102,8 @@ class MainActivity : AppCompatActivity() {
             combos.text = clicks.toString()
             cookie1.startAnimation(aniSlide)
         }
+        // upgrade1 button actions
+        // more cookies per click
         upgrade1btn.setOnClickListener{
             if (coins >= upgrade1cost){
                 coins-=upgrade1cost
@@ -107,8 +114,10 @@ class MainActivity : AppCompatActivity() {
                 prefs.edit().putInt("upgrade1lvl", upgrade1lvl).commit()
                 text2.text = coins.toString()
                 combos.text = clicks.toString()
-                upgrade1Text1.text = "Current lvl: $upgrade1lvl"
-                upgrade1Text2.text = "Next lvl cost: $upgrade1cost"
+                str1.text = "$upgrade1lvl"
+                str2.text = "$upgrade1cost"
+//                String.format(str1, upgrade1lvl)
+//                String.format(str2, upgrade1cost)
                 val snack = Snackbar.make(it,"Upgraded! Click power: $upgrade1lvl",Snackbar.LENGTH_LONG)
                 snack.show()
             } else {
@@ -116,6 +125,8 @@ class MainActivity : AppCompatActivity() {
                 snack.show()
             }
         }
+        // upgrade2 button actions
+        // add more cookies to combo
         upgrade2btn.setOnClickListener{
             if (coins >= upgrade2cost){
                 coins-=upgrade2cost
@@ -126,16 +137,19 @@ class MainActivity : AppCompatActivity() {
                 prefs.edit().putInt("upgrade2lvl", upgrade2lvl).commit()
                 text2.text = coins.toString()
                 combos.text = clicks.toString()
-                upgrade2Text1.text = "Current lvl: $upgrade2lvl"
-                upgrade2Text2.text = "Next lvl cost: $upgrade2cost"
+                str3.text = "$upgrade2lvl"
+                str4.text = "$upgrade2cost"
+//                String.format(str3, upgrade2lvl)
+//                String.format(str4, upgrade2cost)
                 val snack = Snackbar.make(it,"Upgraded! Combo x$upgrade2lvl",Snackbar.LENGTH_LONG)
                 snack.show()
             } else {
                 val snack = Snackbar.make(it,"Not enough cookies!",Snackbar.LENGTH_LONG)
                 snack.show()
             }
-
         }
+        // upgrade3 button actions
+        // lower combo tick rate
         upgrade3btn.setOnClickListener{
             if (coins >= upgrade3cost){
                 if (tickrate <= 10){
@@ -150,50 +164,50 @@ class MainActivity : AppCompatActivity() {
                     prefs.edit().putInt("upgrade3lvl", upgrade3lvl).commit()
                     text2.text = coins.toString()
                     combos.text = clicks.toString()
-                    upgrade3Text1.text = "Current lvl: $upgrade3lvl"
-                    upgrade3Text2.text = "Next lvl cost: $upgrade3cost"
+                    str5.text = "$upgrade3lvl"
+                    str6.text = "$upgrade3cost"
+//                    String.format(str5, upgrade3lvl)
+//                    String.format(str6, upgrade3cost)
                 }
                 if (tickrate in 1501..2000){
                     tickrate-=100
                     prefs.edit().putLong("tickrate", tickrate).commit()
-                    upgrade3btn.text = "Upgrade combo tick rate ($tickrate)"
-                    val snack = Snackbar.make(it,"Upgraded!",Snackbar.LENGTH_LONG)
+//                    String.format(str7, tickrate)
+                    val snack = Snackbar.make(it,"Upgraded! Current tick rate: $tickrate",Snackbar.LENGTH_LONG)
                     snack.show()
                 } else if (tickrate in 1001..1500){
                     tickrate-=80
                     prefs.edit().putLong("tickrate", tickrate).commit()
-                    upgrade3btn.text = "Upgrade combo tick rate ($tickrate)"
-                    val snack = Snackbar.make(it,"Upgraded!",Snackbar.LENGTH_LONG)
+//                    String.format(str7, tickrate)
+                    val snack = Snackbar.make(it,"Upgraded! Current tick rate: $tickrate",Snackbar.LENGTH_LONG)
                     snack.show()
                 } else if (tickrate in 501..1000){
                     tickrate-=50
                     prefs.edit().putLong("tickrate", tickrate).commit()
-                    upgrade3btn.text = "Upgrade combo tick rate ($tickrate)"
-                    val snack = Snackbar.make(it,"Upgraded!",Snackbar.LENGTH_LONG)
+//                    String.format(str7, tickrate)
+                    val snack = Snackbar.make(it,"Upgraded! Current tick rate: $tickrate",Snackbar.LENGTH_LONG)
                     snack.show()
                 } else if (tickrate in 101..500) {
                     tickrate-=20
                     prefs.edit().putLong("tickrate", tickrate).commit()
-                    upgrade3btn.text = "Upgrade combo tick rate ($tickrate)"
-                    val snack = Snackbar.make(it,"Upgraded!",Snackbar.LENGTH_LONG)
+//                    String.format(str7, tickrate)
+                    val snack = Snackbar.make(it,"Upgraded! Current tick rate: $tickrate",Snackbar.LENGTH_LONG)
                     snack.show()
                 } else if (tickrate in 10..100) {
                     tickrate-=10
                     prefs.edit().putLong("tickrate", tickrate).commit()
-                    upgrade3btn.text = "Upgrade combo tick rate ($tickrate)"
-                    val snack = Snackbar.make(it,"Upgraded!",Snackbar.LENGTH_LONG)
+//                    String.format(str7, tickrate)
+                    val snack = Snackbar.make(it,"Upgraded! Current tick rate: $tickrate",Snackbar.LENGTH_LONG)
                     snack.show()
                 } else {
                     prefs.edit().putLong("tickrate", 10).apply()
-                    upgrade3btn.text = "MAX LVL REACHED"
+//                    String.format(str7, tickrate)
                 }
             } else {
                 val snack = Snackbar.make(it,"Not enough cookies!",Snackbar.LENGTH_LONG)
                 snack.show()
             }
         }
-
-
     }
 }
 
