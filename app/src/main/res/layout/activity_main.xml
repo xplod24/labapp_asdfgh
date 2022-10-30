@@ -5,17 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFEBBC"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:noHistory="true">
 
     <TextView
         android:id="@+id/textowo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="serif-monospace"
         android:text="0"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#000000"
         android:textColorLink="#000000"
-        android:textSize="60sp"
+        android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,8 +26,8 @@
 
     <ImageView
         android:id="@+id/cookie"
-        android:layout_width="239dp"
-        android:layout_height="269dp"
+        android:layout_width="218dp"
+        android:layout_height="212dp"
         android:scaleX="0.8"
         android:scaleY="0.8"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -76,22 +77,71 @@
         app:layout_constraintVertical_bias="0.438" />
 
     <LinearLayout
-        android:layout_width="402dp"
-        android:layout_height="221dp"
-        android:layout_marginTop="140dp"
-        android:backgroundTint="#F57F17"
+        android:layout_width="408dp"
+        android:layout_height="96dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginBottom="4dp"
+        android:gravity="center|center_horizontal|top"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/button_upgrade4"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:backgroundTintMode="add"
+            android:stateListAnimator="@android:anim/bounce_interpolator"
+            android:text="@string/achievements_button"
+            app:backgroundTint="#5DA7AE"
+            tools:text="@string/achievements_button" />
+
+        <Button
+            android:id="@+id/button_upgrade"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:backgroundTintMode="add"
+            android:stateListAnimator="@android:anim/bounce_interpolator"
+            android:text="@string/title_activity_upgrades"
+            app:backgroundTint="#5DA7AE"
+            tools:text="@string/title_activity_upgrades" />
+
+        <Button
+            android:id="@+id/button_upgrade5"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:backgroundTintMode="add"
+            android:stateListAnimator="@android:anim/bounce_interpolator"
+            android:text="@string/abilities_button"
+            app:backgroundTint="#5DA7AE"
+            tools:text="@string/abilities_button" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="258dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cookie"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintStart_toStartOf="parent">
 
         <ScrollView
+            android:id="@+id/id1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#543D46">
+            android:background="#543D46"
+            tools:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -300,6 +350,41 @@
 
             </LinearLayout>
         </ScrollView>
+
+        <ScrollView
+            android:id="@+id/id2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="#543D46">
+
+            <LinearLayout
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:foregroundGravity="center"
+                    app:cardBackgroundColor="#857171"
+                    app:cardCornerRadius="4dp">
+
+                    <TextView
+                        android:id="@+id/info_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        tools:text="SampleText" />
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </ScrollView>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

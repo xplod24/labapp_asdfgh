@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:buttonStyle">@style/button_cust</item>
     </style>
     <style name="Theme.Labapp.NoActionBar">
         <item name="windowActionBar">false</item>
