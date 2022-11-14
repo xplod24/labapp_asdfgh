@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
 
-class FragmentOne : Fragment() {
+class FragmentSettings : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -16,7 +16,7 @@ class FragmentOne : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_one, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_settings, container, false)
         return rootView
     }
 

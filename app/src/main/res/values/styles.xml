@@ -13,4 +13,12 @@
             <item name="android:focusable">true</item>
             <item name="android:clickable">true</item>
         </style>
+    <style name="Widget.Theme.Labapp.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
+    <style name="Widget.Theme.Labapp.ButtonBar.Fullscreen" parent="">
+        <item name="android:background">@color/black_overlay</item>
+        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
+    </style>
 </resources>

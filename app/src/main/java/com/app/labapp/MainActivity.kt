@@ -176,7 +176,7 @@ class MainActivity : AppCompatActivity() {
                     prefs.edit().putInt("upgrade3cost", upgrade3cost).commit()
                     prefs.edit().putInt("upgrade3lvl", upgrade3lvl).commit()
                     text2.text = coins.toString()
-                    combos.text = clicks.toString()
+//                    combos.text = clicks.toString()
                     str5.text = "$upgrade3lvl"
                     str6.text = "$upgrade3cost"
                 }

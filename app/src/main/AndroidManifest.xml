@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Labapp"
         tools:targetApi="31" >
         <activity
+            android:name=".FullscreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/title_activity_fullscreen"
+            android:theme="@style/Theme.Labapp.Fullscreen" />
+        <activity
             android:name=".Upgrades"
             android:exported="false"
             android:label="@string/title_activity_upgrades"
