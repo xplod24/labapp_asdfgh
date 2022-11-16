@@ -6,4 +6,77 @@
     android:layout_height="match_parent"
     tools:context=".UpgradesActivity">
 
+    <ImageView
+        android:id="@+id/mainBackground2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleX="2"
+        android:scaleY="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/bg7" />
+
+    <ScrollView
+        android:id="@+id/mainScroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foregroundGravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <LinearLayout
+            android:id="@+id/mainLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/upgrade1layout"
+                android:layout_width="match_parent"
+                android:layout_height="147dp"
+                android:background="@drawable/bg10"
+                android:gravity="center"
+                android:orientation="horizontal" />
+
+            <LinearLayout
+                android:id="@+id/upgrade2layout"
+                android:layout_width="match_parent"
+                android:layout_height="147dp"
+                android:background="@drawable/bg10"
+                android:gravity="center"
+                android:orientation="horizontal" />
+
+            <LinearLayout
+                android:id="@+id/upgrade3layout"
+                android:layout_width="match_parent"
+                android:layout_height="147dp"
+                android:background="@drawable/bg10"
+                android:gravity="center"
+                android:orientation="horizontal" />
+
+            <LinearLayout
+                android:id="@+id/upgrade4layout"
+                android:layout_width="match_parent"
+                android:layout_height="147dp"
+                android:background="@drawable/bg10"
+                android:gravity="center"
+                android:orientation="horizontal" />
+
+            <LinearLayout
+                android:id="@+id/upgrade5layout"
+                android:layout_width="match_parent"
+                android:layout_height="147dp"
+                android:background="@drawable/bg10"
+                android:gravity="center"
+                android:orientation="horizontal" />
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

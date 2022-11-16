@@ -1,19 +1,19 @@
 package com.app.labapp
 
 
+import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
+import kotlin.system.exitProcess
 
 
 class MainActivity : AppCompatActivity() {
@@ -25,14 +25,11 @@ class MainActivity : AppCompatActivity() {
         val aniSlide = AnimationUtils.loadAnimation(this, R.anim.zoom_in)
 
         setContentView(R.layout.activity_main)
-        val text2 = findViewById<TextView>(R.id.textowo)
+        val text2 = findViewById<TextView>(R.id.cookiesCount)
         val cookie1 = findViewById<ImageView>(R.id.cookie)
         val combos = findViewById<TextView>(R.id.comboView)
-        val switch1 = findViewById<Button>(R.id.button_upgrade)
-        val switch2 = findViewById<Button>(R.id.button_upgrade4)
-        val upgrade1btn = findViewById<Button>(R.id.button_upgrade1)
-        val upgrade2btn = findViewById<Button>(R.id.button_upgrade2)
-        val upgrade3btn = findViewById<Button>(R.id.button_upgrade3)
+        val switch1 = findViewById<ImageView>(R.id.buttonAchiev)
+        val switch2 = findViewById<ImageView>(R.id.buttonUpgr)
         val str1 = findViewById<TextView>(R.id.upgrade1)
         val str2 = findViewById<TextView>(R.id.upgrade1_cost)
         val str3 = findViewById<TextView>(R.id.upgrade2)
@@ -112,120 +109,21 @@ class MainActivity : AppCompatActivity() {
             var mp = MediaPlayer.create(this, R.raw.glasssmash)
             mp.start()
         }
-
+        // achievements
         switch1.setOnClickListener{
-            val a = findViewById<ScrollView>(R.id.id1)
-            val b = findViewById<ScrollView>(R.id.id2)
-            a.visibility = View.VISIBLE
-            b.visibility = View.GONE
+            intent = Intent(applicationContext, AchievementsActivity::class.java)
+            startActivity(intent)
         }
 
+        // upgrades
         switch2.setOnClickListener{
-            val a = findViewById<ScrollView>(R.id.id1)
-            val b = findViewById<ScrollView>(R.id.id2)
-            a.visibility = View.GONE
-            b.visibility = View.VISIBLE
+            intent = Intent(applicationContext, UpgradesActivity::class.java)
+            startActivity(intent)
         }
+
         // upgrade1 button actions
         // more cookies per click
-        upgrade1btn.setOnClickListener{
-            if (coins >= upgrade1cost){
-                coins-=upgrade1cost
-                upgrade1cost*=2
-                upgrade1lvl++
-                prefs.edit().putInt("coins", coins).commit()
-                prefs.edit().putInt("upgrade1cost", upgrade1cost).commit()
-                prefs.edit().putInt("upgrade1lvl", upgrade1lvl).commit()
-                text2.text = coins.toString()
-                combos.text = clicks.toString()
-                str1.text = "$upgrade1lvl"
-                str2.text =  "$upgrade1cost"
-                val snack = Snackbar.make(it,"Upgraded! Click power: $upgrade1lvl",Snackbar.LENGTH_LONG)
-                snack.show()
-            } else {
-                val snack = Snackbar.make(it,"Not enough cookies!",Snackbar.LENGTH_LONG)
-                snack.show()
-            }
-        }
-        // upgrade2 button actions
-        // add more cookies to combo
-        upgrade2btn.setOnClickListener{
-            if (coins >= upgrade2cost){
-                coins-=upgrade2cost
-                upgrade2cost*=2
-                upgrade2lvl++
-                prefs.edit().putInt("coins", coins).commit()
-                prefs.edit().putInt("upgrade2cost", upgrade2cost).commit()
-                prefs.edit().putInt("upgrade2lvl", upgrade2lvl).commit()
-                text2.text = coins.toString()
-                combos.text = clicks.toString()
-                str3.text = "$upgrade2lvl"
-                str4.text = "$upgrade2cost"
-                val snack = Snackbar.make(it,"Upgraded! Combo x$upgrade2lvl",Snackbar.LENGTH_LONG)
-                snack.show()
-            } else {
-                val snack = Snackbar.make(it,"Not enough cookies!",Snackbar.LENGTH_LONG)
-                snack.show()
-            }
-        }
-        // upgrade3 button actions
-        // lower combo tick rate
-        upgrade3btn.setOnClickListener{
-            if (coins >= upgrade3cost){
-                if (tickrate <= 10){
-                    val snack = Snackbar.make(it,"Reached Max LVL!",Snackbar.LENGTH_LONG)
-                    snack.show()
-                } else {
-                    coins-=upgrade3cost
-                    upgrade3cost*=2
-                    upgrade3lvl++
-                    prefs.edit().putInt("coins", coins).commit()
-                    prefs.edit().putInt("upgrade3cost", upgrade3cost).commit()
-                    prefs.edit().putInt("upgrade3lvl", upgrade3lvl).commit()
-                    text2.text = coins.toString()
-//                    combos.text = clicks.toString()
-                    str5.text = "$upgrade3lvl"
-                    str6.text = "$upgrade3cost"
-                }
-                if (tickrate in 1501..2000){
-                    tickrate-=100
-                    prefs.edit().putLong("tickrate", tickrate).commit()
-//                    String.format(str7, tickrate)
-                    val snack = Snackbar.make(it,"Upgraded! Current tick rate: $tickrate",Snackbar.LENGTH_LONG)
-                    snack.show()
-                } else if (tickrate in 1001..1500){
-                    tickrate-=80
-                    prefs.edit().putLong("tickrate", tickrate).commit()
-//                    String.format(str7, tickrate)
-                    val snack = Snackbar.make(it,"Upgraded! Current tick rate: $tickrate",Snackbar.LENGTH_LONG)
-                    snack.show()
-                } else if (tickrate in 501..1000){
-                    tickrate-=50
-                    prefs.edit().putLong("tickrate", tickrate).commit()
-//                    String.format(str7, tickrate)
-                    val snack = Snackbar.make(it,"Upgraded! Current tick rate: $tickrate",Snackbar.LENGTH_LONG)
-                    snack.show()
-                } else if (tickrate in 101..500) {
-                    tickrate-=20
-                    prefs.edit().putLong("tickrate", tickrate).commit()
-//                    String.format(str7, tickrate)
-                    val snack = Snackbar.make(it,"Upgraded! Current tick rate: $tickrate",Snackbar.LENGTH_LONG)
-                    snack.show()
-                } else if (tickrate in 10..100) {
-                    tickrate-=10
-                    prefs.edit().putLong("tickrate", tickrate).commit()
-//                    String.format(str7, tickrate)
-                    val snack = Snackbar.make(it,"Upgraded! Current tick rate: $tickrate",Snackbar.LENGTH_LONG)
-                    snack.show()
-                } else {
-                    prefs.edit().putLong("tickrate", 10).apply()
-//                    String.format(str7, tickrate)
-                }
-            } else {
-                val snack = Snackbar.make(it,"Not enough cookies!",Snackbar.LENGTH_LONG)
-                snack.show()
-            }
-        }
+
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
@@ -235,14 +133,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_settings -> {
-            // User chose the "Settings" item, show the app settings UI...
+            intent = Intent(applicationContext, SettingsActivity::class.java)
+            startActivity(intent)
             true
         }
 
-        R.id.action_favorite -> {
-            // User chose the "Favorite" action, mark the current item
-            // as a favorite...
-            true
+        R.id.action_exitgame -> {
+            finish()
+            exitProcess(0)
         }
 
         else -> {
