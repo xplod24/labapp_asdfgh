@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Crystal Clicker</string>
+    <string name="cookies">Cookies clicked</string>
+    <string name="title_activity_upgrades">Upgrades</string>
+    <string name="achievements_button">Achievements</string>
+    <string name="upgrade_button">Upgrade</string>
+    <string name="upgradelvltext">Current lvl: </string>
+    <string name="upgradelvlcost">Next lvl cost: </string>
+
+    //upgrade1
+    <string name="upgrade1name">Magic tap</string>
+    <string name="upgrade1desc">Adds additional crystals per tap</string>
+    //upgrade2
+    <string name="upgrade2name">Combo tap</string>
+    <string name="upgrade2desc">Adds additional combo point per tap</string>
+    //upgrade3
+    <string name="upgrade3name">Combo ticker</string>
+    <string name="upgrade3desc">Speeds up tick rate of combo</string>
+
+    //settings
+    <string name="soundswitch">Sounds</string>
+    <string name="animswitch">Animations</string>
+    <string name="langswitch">Language change</string>
+
+    <string name="soundon">Sound is on</string>
+    <string name="soundoff">Sound is off</string>
+
+    <string name="animon">Animations are on</string>
+    <string name="animoff">Animations are off</string>
+
+    <string name="english">English</string>
+    <string name="polish">Polish</string>
+    <string name="settings">Settings</string>
+    <string name="exitapp">Exit app</string>
+</resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Crystal Clicker</string>
+    <string name="cookies">Naklikane ciastka</string>
+    <string name="title_activity_upgrades">Ulepszenia</string>
+    <string name="achievements_button">Osiągnięcia</string>
+    <string name="upgrade_button">Ulepsz</string>
+    <string name="upgradelvltext">Obecny lvl:</string>
+    <string name="upgradelvlcost">Koszt nast. lvl:</string>
+    <string name="upgrade1name">Magiczny dotyk</string>
+    <string name="upgrade1desc">Dodaje dodatkowe kryształy/tapnięcie</string>
+    <string name="upgrade2name">Combo tap</string>
+    <string name="upgrade2desc">Dodaje dodatkowe pkt combo/tapnięcie</string>
+    <string name="upgrade3name">Combo Ticker</string>
+    <string name="upgrade3desc">Przyspiesza zbijanie comba</string>
+    <string name="soundswitch">Dźwięki</string>
+    <string name="animswitch">Animacje</string>
+    <string name="langswitch">Zmiana języka</string>
+    <string name="soundon">Dźwięki włączone</string>
+    <string name="soundoff">Dźwięki wyłączone</string>
+    <string name="animon">Animacje włączone</string>
+    <string name="animoff">Animacje wyłączone</string>
+    <string name="english">Angielski</string>
+    <string name="polish">Polski</string>
+    <string name="settings">Ustawienia</string>
+    <string name="exitapp">Wyjdź z apki</string>
+</resources>

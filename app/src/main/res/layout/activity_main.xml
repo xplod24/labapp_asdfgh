@@ -107,7 +107,7 @@
         android:id="@+id/buttonUpgr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/mainBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -147,33 +147,31 @@
         android:layout_height="wrap_content"
         android:scaleX="0.8"
         android:scaleY="0.8"
+        android:soundEffectsEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cookiesCount"
         app:srcCompat="@drawable/bg1"
-        tools:srcCompat="@drawable/bg1"
-        android:soundEffectsEnabled="false"/>
+        tools:srcCompat="@drawable/bg1" />
 
     <TextView
         android:id="@+id/comboView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="120dp"
         android:text="0"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/comboBackground"
         app:layout_constraintEnd_toEndOf="@+id/comboBackground"
-        app:layout_constraintHorizontal_bias="0.604"
-        app:layout_constraintStart_toStartOf="@+id/comboBackground"
-        app:layout_constraintTop_toTopOf="@+id/backLight"
-        app:layout_constraintVertical_bias="0.59" />
+        app:layout_constraintTop_toTopOf="@+id/backLight" />
 
     <TextView
         android:id="@+id/textCombo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="12dp"
         android:text="Combo:"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toStartOf="@+id/comboView"

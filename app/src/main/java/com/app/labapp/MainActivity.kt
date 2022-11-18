@@ -2,67 +2,53 @@ package com.app.labapp
 
 
 import android.content.Intent
+import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.media.MediaPlayer
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.animation.AnimationUtils
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
+import java.util.*
 import kotlin.system.exitProcess
-
 
 class MainActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    var soundEnabler = false
+    var animEnabler = false
+    var running = false
 
-        val prefs = getSharedPreferences("com.app.labapp", MODE_PRIVATE)
-        val aniSlide = AnimationUtils.loadAnimation(this, R.anim.zoom_in)
+//    override fun onRestart() {
+//        this.recreate()
+//        super.onRestart()
+//    }
 
-        setContentView(R.layout.activity_main)
+    override fun onResume() {
+        super.onResume()
+        val prefs = getSharedPreferences("PREF_NAME", MODE_PRIVATE)
+        val edit: SharedPreferences.Editor = prefs.edit()
         val text2 = findViewById<TextView>(R.id.cookiesCount)
-        val cookie1 = findViewById<ImageView>(R.id.cookie)
         val combos = findViewById<TextView>(R.id.comboView)
-        val switch1 = findViewById<ImageView>(R.id.buttonAchiev)
-        val switch2 = findViewById<ImageView>(R.id.buttonUpgr)
-        val str1 = findViewById<TextView>(R.id.upgrade1)
-        val str2 = findViewById<TextView>(R.id.upgrade1_cost)
-        val str3 = findViewById<TextView>(R.id.upgrade2)
-        val str4 = findViewById<TextView>(R.id.upgrade2_cost)
-        val str5 = findViewById<TextView>(R.id.upgrade3)
-        val str6 = findViewById<TextView>(R.id.upgrade3_cost)
-        // persistent values
+        var sound = prefs.getBoolean("sound", true)
+        var animationEnable = prefs.getBoolean("animation", true)
+        var coins = prefs.getInt("coins", 0)
+        var tickrate = prefs.getLong("tickrate", 2000)
+        var clicks = prefs.getInt("clicks", 0)
         var upgrade1lvl = prefs.getInt("upgrade1lvl", 0)
         var upgrade2lvl = prefs.getInt("upgrade2lvl", 0)
-        var upgrade3lvl = prefs.getInt("upgrade3lvl", 0)
-        var upgrade1cost = prefs.getInt("upgrade1cost", 2)
-        var upgrade2cost = prefs.getInt("upgrade2cost", 2)
-        var upgrade3cost = prefs.getInt("upgrade3cost", 2)
-        var coins = prefs.getInt("coins", 0)
-        var running = prefs.getBoolean("running", false)
-        var clicks = prefs.getInt("clicks", 0)
-        var tickrate = prefs.getLong("tickrate", 2000)
-        // TO DO - next upgrade paths
-        // var comboclicks = prefs.getInt("comboclicks", 0)
-        // var comboMulti = prefs.getInt("combomulti", 0)
-        //upgrade texts
-        str1.text = "$upgrade1lvl"
-        str2.text = "$upgrade1cost"
-        str3.text = "$upgrade2lvl"
-        str4.text = "$upgrade2cost"
-        str5.text = "$upgrade3lvl"
-        str6.text = "$upgrade3cost"
-        //cookies text
-        text2.text = "$coins"
-        //combos text
-        combos.text = "$clicks"
-
-        // main clicker start
+        val cookie1 = findViewById<ImageView>(R.id.cookie)
+        Log.d("CoinsResumed", "$coins")
+        Log.d("ClicksResumed", "$clicks")
+        soundEnabler = sound
+        animEnabler = animationEnable
+        running = true
+        text2.setText(coins.toString())
         cookie1.setOnClickListener{
             if (!running){
                 running = true
@@ -73,68 +59,172 @@ class MainActivity : AppCompatActivity() {
                             if (clicks>0) {
                                 coins++
                                 clicks--
-                                prefs.edit().putInt("clicks", clicks).commit()
-                                prefs.edit().putInt("coins", coins).commit()
+                                edit.putInt("clicks", clicks)
+                                edit.putInt("coins", coins)
+                                edit.apply()
+                                Log.d("Coins","$coins")
+                                text2.text = coins.toString()
+                                combos.text = clicks.toString()
                             } else if (clicks == 0){
-                                prefs.edit().putBoolean("running", false).commit()
+                                running = false
                             } else {
-                                prefs.edit().putBoolean("running", false).commit()
+                                running = false
                             }
-                            text2.text = coins.toString()
-                            combos.text = clicks.toString()
                         }
                     }
                 }).start()
-            } else {
             }
+            Log.d("Leci?", "$running")
             if (upgrade1lvl==0){
                 coins++
-                prefs.edit().putInt("coins", coins).commit()
+                edit.putInt("coins", coins).apply()
+                Log.d("Coins","$coins")
             } else {
                 coins++
                 coins+=upgrade1lvl
-                prefs.edit().putInt("coins", coins).commit()
+                edit.putInt("coins", coins).apply()
+                Log.d("Coins","$coins")
             }
             if (upgrade2lvl==0){
                 clicks++
-                prefs.edit().putInt("clicks", clicks).commit()
+                edit.putInt("clicks", clicks).apply()
             } else {
                 clicks++
                 clicks+=upgrade2lvl
-                prefs.edit().putInt("clicks", clicks).commit()
+                edit.putInt("clicks", clicks).apply()
             }
             text2.text = coins.toString()
             combos.text = clicks.toString()
-            cookie1.startAnimation(aniSlide)
-            var mp = MediaPlayer.create(this, R.raw.glasssmash)
-            mp.start()
+            Log.d("TotalClicks", "$clicks")
+            if (animEnabler){
+                val aniSlide = AnimationUtils.loadAnimation(this, R.anim.zoom_in)
+                cookie1.startAnimation(aniSlide)
+            }
+            if (soundEnabler){
+                val mp = MediaPlayer.create(this, R.raw.glasssmash)
+                mp.start()
+            }
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+
+        val prefs = getSharedPreferences("PREF_NAME", MODE_PRIVATE)
+        val edit: SharedPreferences.Editor = prefs.edit()
+
+        val storedLang = prefs.getString("lang", "en")
+        Log.d("Lang", "$storedLang")
+        val lang = Locale("$storedLang")
+        Locale.setDefault(lang)
+        resources.configuration.setLocale(lang)
+        resources.updateConfiguration(resources.configuration, resources.displayMetrics)
+
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        val combos = findViewById<TextView>(R.id.comboView)
+        val text2 = findViewById<TextView>(R.id.cookiesCount)
+        val cookie1 = findViewById<ImageView>(R.id.cookie)
+        var tickrate = prefs.getLong("tickrate", 2000)
+        var sound = prefs.getBoolean("sound", true)
+        var animationEnable = prefs.getBoolean("animation", true)
+        var upgrade1lvl = prefs.getInt("upgrade1lvl", 0)
+        var upgrade2lvl = prefs.getInt("upgrade2lvl", 0)
+        var coins = prefs.getInt("coins", 0)
+        var clicks = prefs.getInt("clicks", 0)
+        Log.d("Up1lvl", "$upgrade1lvl")
+        Log.d("Up2lvl", "$upgrade2lvl")
+        Log.d("CoinsCreate", "$coins")
+        soundEnabler = sound
+        animEnabler = animationEnable
+        text2.text = coins.toString()
+        combos.text = clicks.toString()
+
+//        cookie1.setOnClickListener{
+//            if (!running){
+//                running = true
+//                Thread(Runnable {
+//                    while(running){
+//                        Thread.sleep(tickrate.toLong())
+//                        runOnUiThread{
+//                            if (clicks>0) {
+//                                coins++
+//                                clicks--
+//                                edit.putInt("clicks", clicks)
+//                                edit.putInt("coins", coins)
+//                                edit.apply()
+//                                Log.d("Coins","$coins")
+//                                text2.text = coins.toString()
+//                                combos.text = clicks.toString()
+//                            } else if (clicks == 0){
+//                                running = false
+//                            } else {
+//                                running = false
+//                            }
+//                        }
+//                    }
+//                }).start()
+//            }
+//
+//            Log.d("Leci?", "$running")
+//            if (upgrade1lvl==0){
+//                coins++
+//                edit.putInt("coins", coins).apply()
+//                Log.d("Coins","$coins")
+//            } else {
+//                coins++
+//                coins+=upgrade1lvl
+//                edit.putInt("coins", coins).apply()
+//                Log.d("Coins","$coins")
+//            }
+//            if (upgrade2lvl==0){
+//                clicks++
+//                edit.putInt("clicks", clicks).apply()
+//            } else {
+//                clicks++
+//                clicks+=upgrade2lvl
+//                edit.putInt("clicks", clicks).apply()
+//            }
+//            text2.text = coins.toString()
+//            combos.text = clicks.toString()
+//            Log.d("TotalClicks", "$clicks")
+//            if (animEnabler){
+//                val aniSlide = AnimationUtils.loadAnimation(this, R.anim.zoom_in)
+//                cookie1.startAnimation(aniSlide)
+//            }
+//            if (soundEnabler){
+//                val mp = MediaPlayer.create(this, R.raw.glasssmash)
+//                mp.start()
+//            }
+
+//        }
+
+        val switch1 = findViewById<ImageView>(R.id.buttonAchiev)
+        val switch2 = findViewById<ImageView>(R.id.buttonUpgr)
+
         // achievements
         switch1.setOnClickListener{
-            intent = Intent(applicationContext, AchievementsActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this@MainActivity, AchievementsActivity::class.java))
         }
 
         // upgrades
         switch2.setOnClickListener{
-            intent = Intent(applicationContext, UpgradesActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this@MainActivity, UpgradesActivity::class.java))
+            running = false
         }
 
-        // upgrade1 button actions
-        // more cookies per click
-
     }
+    // Menu creator
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.menu, menu)
         return true
     }
-
+    // Menu options
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_settings -> {
             intent = Intent(applicationContext, SettingsActivity::class.java)
             startActivity(intent)
+            finish()
             true
         }
 
@@ -144,11 +234,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         else -> {
-            // If we got here, the user's action was not recognized.
-            // Invoke the superclass to handle it.
             super.onOptionsItemSelected(item)
         }
-
     }
 }
 
