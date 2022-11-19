@@ -62,4 +62,6 @@
     <string name="ach_all_desc">Odblokowano wszystkie osiągnięcia!</string>
     <string name="not_enough">Za mało kryształów!</string>
     <string name="upgraded">Ulepszono!</string>
+    <string name="ach_unl">Odblokowano osiągnięcie!</string>
+    <string name="up_max">Osiągnięto maksymalny lvl!</string>
 </resources>

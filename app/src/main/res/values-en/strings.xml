@@ -89,4 +89,6 @@
     <string name="ach_all_desc">You\'ve unlocked all achievements!</string>
     <string name="not_enough">You don\'t have enough crystals</string>
     <string name="upgraded">Upgraded!</string>
+    <string name="ach_unl">Achievement Unlocked!</string>
+    <string name="up_max">Max lvl reached!</string>
 </resources>
