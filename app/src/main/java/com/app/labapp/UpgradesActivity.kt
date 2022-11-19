@@ -26,6 +26,29 @@ class UpgradesActivity : AppCompatActivity() {
         var coins = prefs.getInt("coins", 0)
         edit.putInt("coins", coins)
         var tickrate = prefs.getLong("tickrate", 2000)
+
+        //achievements declare
+        var ach_first = prefs.getBoolean("ach_first", false)
+        var ach_1000 = prefs.getBoolean("ach_1000", false)
+        var ach_10000 = prefs.getBoolean("ach_10000", false)
+        var ach_100000 = prefs.getBoolean("ach_100000", false)
+        var ach_1000000 = prefs.getBoolean("ach_1000000", false)
+        var ach_up1_5 = prefs.getBoolean("ach_up1_5", false)
+        var ach_up1_10 = prefs.getBoolean("ach_up1_10", false)
+        var ach_up1_15 = prefs.getBoolean("ach_up1_15", false)
+        var ach_up1_20 = prefs.getBoolean("ach_up1_20", false)
+        var ach_up2_5 = prefs.getBoolean("ach_up2_5", false)
+        var ach_up2_10 = prefs.getBoolean("ach_up2_10", false)
+        var ach_up2_15 = prefs.getBoolean("ach_up2_15", false)
+        var ach_up2_20 = prefs.getBoolean("ach_up2_20", false)
+        var ach_up3_5 = prefs.getBoolean("ach_up3_5", false)
+        var ach_up3_10 = prefs.getBoolean("ach_up3_10", false)
+        var ach_up3_15 = prefs.getBoolean("ach_up3_15", false)
+        var ach_up3_20 = prefs.getBoolean("ach_up3_20", false)
+        var ach_all = prefs.getBoolean("ach_all", false)
+        val a1 = (R.string.not_enough)
+        val a2 = (R.string.upgraded)
+
         val upgrade1btn = findViewById<TextView>(R.id.up1)
         val upgrade2btn = findViewById<TextView>(R.id.up2)
         val upgrade3btn = findViewById<TextView>(R.id.up3)
@@ -58,15 +81,35 @@ class UpgradesActivity : AppCompatActivity() {
                 edit.putInt("coins", coins)
                 edit.putInt("upgrade1cost", upgrade1cost)
                 edit.putInt("upgrade1lvl", upgrade1lvl)
+                if (upgrade1lvl == 5){
+                    edit.putBoolean("ach_up1_5", true)
+                    val snack = Snackbar.make(it,"Achievement unlocked!", Snackbar.LENGTH_LONG)
+                    snack.show()
+                }
+                if (upgrade1lvl == 10){
+                    edit.putBoolean("ach_up1_10", true)
+                    val snack = Snackbar.make(it,"Achievement unlocked!", Snackbar.LENGTH_LONG)
+                    snack.show()
+                }
+                if (upgrade1lvl == 15){
+                    edit.putBoolean("ach_up1_10", true)
+                    val snack = Snackbar.make(it,"Achievement unlocked!", Snackbar.LENGTH_LONG)
+                    snack.show()
+                }
+                if (upgrade1lvl == 20){
+                    edit.putBoolean("ach_up1_10", true)
+                    val snack = Snackbar.make(it,"Achievement unlocked!", Snackbar.LENGTH_LONG)
+                    snack.show()
+                }
                 edit.apply()
                 text2.text = coins.toString()
                 str1.text = "$upgrade1lvl"
                 str2.text =  "$upgrade1cost"
-
-                val snack = Snackbar.make(it,"Upgraded! Click power: $upgrade1lvl", Snackbar.LENGTH_LONG)
+                val snack = Snackbar.make(it,a2, Snackbar.LENGTH_LONG)
                 snack.show()
+
             } else {
-                val snack = Snackbar.make(it,"Not enough cookies!", Snackbar.LENGTH_LONG)
+                val snack = Snackbar.make(it,a1, Snackbar.LENGTH_LONG)
                 snack.show()
             }
         }
@@ -86,10 +129,10 @@ class UpgradesActivity : AppCompatActivity() {
                 text2.text = coins.toString()
                 str3.text = "$upgrade2lvl"
                 str4.text = "$upgrade2cost"
-                val snack = Snackbar.make(it,"Upgraded! Combo x$upgrade2lvl", Snackbar.LENGTH_LONG)
+                val snack = Snackbar.make(it,a2, Snackbar.LENGTH_LONG)
                 snack.show()
             } else {
-                val snack = Snackbar.make(it,"Not enough cookies!", Snackbar.LENGTH_LONG)
+                val snack = Snackbar.make(it,a1, Snackbar.LENGTH_LONG)
                 snack.show()
             }
         }
@@ -119,46 +162,44 @@ class UpgradesActivity : AppCompatActivity() {
                     tickrate-=100
                     edit.putLong("tickrate", tickrate)
                     edit.apply()
-                    val snack = Snackbar.make(it,"Upgraded! Current tick rate: $tickrate", Snackbar.LENGTH_LONG)
+                    val snack = Snackbar.make(it,a2, Snackbar.LENGTH_LONG)
                     snack.show()
                 } else if (tickrate in 1001..1500){
                     tickrate-=80
                     edit.putLong("tickrate", tickrate)
                     edit.apply()
-                    val snack = Snackbar.make(it,"Upgraded! Current tick rate: $tickrate", Snackbar.LENGTH_LONG)
+                    val snack = Snackbar.make(it,a2, Snackbar.LENGTH_LONG)
                     snack.show()
                 } else if (tickrate in 501..1000){
                     tickrate-=50
                     edit.putLong("tickrate", tickrate)
                     edit.apply()
-                    val snack = Snackbar.make(it,"Upgraded! Current tick rate: $tickrate", Snackbar.LENGTH_LONG)
+                    val snack = Snackbar.make(it,a2, Snackbar.LENGTH_LONG)
                     snack.show()
                 } else if (tickrate in 101..500) {
                     tickrate-=20
                     edit.putLong("tickrate", tickrate)
                     edit.apply()
-                    val snack = Snackbar.make(it,"Upgraded! Current tick rate: $tickrate", Snackbar.LENGTH_LONG)
+                    val snack = Snackbar.make(it,a2, Snackbar.LENGTH_LONG)
                     snack.show()
                 } else if (tickrate in 10..100) {
                     tickrate-=10
                     edit.putLong("tickrate", tickrate)
                     edit.apply()
-                    val snack = Snackbar.make(it,"Upgraded! Current tick rate: $tickrate", Snackbar.LENGTH_LONG)
+                    val snack = Snackbar.make(it,a2, Snackbar.LENGTH_LONG)
                     snack.show()
                 } else {
                     edit.putLong("tickrate", 10)
                     edit.apply()
                 }
             } else {
-                val snack = Snackbar.make(it,"Not enough cookies!", Snackbar.LENGTH_LONG)
+                val snack = Snackbar.make(it,a1, Snackbar.LENGTH_LONG)
                 snack.show()
             }
         }
     }
     override fun onSupportNavigateUp(): Boolean {
-        val prefs = getSharedPreferences("PREF_NAME", MODE_PRIVATE)
-        var coins = prefs.getInt("coins", 0)
-        Log.d("Transfer","$coins")
+        finish()
         onBackPressed()
         return true
     }

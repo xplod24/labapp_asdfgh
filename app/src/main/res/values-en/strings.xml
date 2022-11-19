@@ -33,4 +33,60 @@
     <string name="polish">Polish</string>
     <string name="settings">Settings</string>
     <string name="exitapp">Exit app</string>
+    //achievements
+    <string name="ach_first">First tapped!</string>
+    <string name="ach_first_desc">You tapped for the first time!</string>
+
+    <string name="ach_1000">1000 Crystals</string>
+    <string name="ach_1000_desc">You got 1000 crystals stored!</string>
+
+    <string name="ach_10000">10000 Crystals</string>
+    <string name="ach_10000_desc">You got 10000 crystals stored!</string>
+
+    <string name="ach_100000">100000 Crystals</string>
+    <string name="ach_100000_desc">You got 100000 crystals stored!</string>
+
+    <string name="ach_1000000">1000000 Crystals</string>
+    <string name="ach_1000000_desc">You got 1000000 crystals stored!</string>
+
+    <string name="ach_up1_5">Tap lvl 5</string>
+    <string name="ach_up1_5_desc">You upgraded tapping to lvl 5!</string>
+
+    <string name="ach_up1_10">Tap lvl 10</string>
+    <string name="ach_up1_10_desc">You upgraded tapping to lvl 10!</string>
+
+    <string name="ach_up1_15">Tap lvl 15</string>
+    <string name="ach_up1_15_desc">You upgraded tapping to lvl 15!</string>
+
+    <string name="ach_up1_20">Tap lvl 20</string>
+    <string name="ach_up1_20_desc">You upgraded tapping to lvl 20!</string>
+
+    <string name="ach_up2_5">Combo lvl 5</string>
+    <string name="ach_up2_5_desc">You upgraded combo to lvl 5!</string>
+
+    <string name="ach_up2_10">Combo lvl 10</string>
+    <string name="ach_up2_10_desc">You upgraded combo to lvl 10!</string>
+
+    <string name="ach_up2_15">Combo lvl 15</string>
+    <string name="ach_up2_15_desc">You upgraded combo to lvl 15!</string>
+
+    <string name="ach_up2_20">Combo lvl 20</string>
+    <string name="ach_up2_20_desc">You upgraded combo to lvl 20!</string>
+
+    <string name="ach_up3_5">Tickrate lvl 5</string>
+    <string name="ach_up3_5_desc">You upgraded tickrate to lvl 5!</string>
+
+    <string name="ach_up3_10">Tickrate lvl 10</string>
+    <string name="ach_up3_10_desc">You upgraded tickrate to lvl 10!</string>
+
+    <string name="ach_up3_15">Tickrate lvl 15</string>
+    <string name="ach_up3_15_desc">You upgraded tickrate to lvl 15!</string>
+
+    <string name="ach_up3_20">Tickrate lvl 20</string>
+    <string name="ach_up3_20_desc">You upgraded tickrate to lvl 20!</string>
+
+    <string name="ach_all">Crsytal King</string>
+    <string name="ach_all_desc">You\'ve unlocked all achievements!</string>
+    <string name="not_enough">You don\'t have enough crystals</string>
+    <string name="upgraded">Upgraded!</string>
 </resources>

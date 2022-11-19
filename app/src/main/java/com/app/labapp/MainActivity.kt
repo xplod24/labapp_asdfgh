@@ -15,6 +15,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import java.util.*
 import kotlin.system.exitProcess
 
@@ -31,8 +32,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+
         val prefs = getSharedPreferences("PREF_NAME", MODE_PRIVATE)
         val edit: SharedPreferences.Editor = prefs.edit()
+
+        //achievements declare
+//        var ach_first = prefs.getBoolean("ach_first", false)
+
+        var ach_all = prefs.getBoolean("ach_all", false)
+
+
         val text2 = findViewById<TextView>(R.id.cookiesCount)
         val combos = findViewById<TextView>(R.id.comboView)
         var sound = prefs.getBoolean("sound", true)
@@ -104,7 +113,40 @@ class MainActivity : AppCompatActivity() {
                 val mp = MediaPlayer.create(this, R.raw.glasssmash)
                 mp.start()
             }
+            // coins achievements
+            var ach_1000 = prefs.getBoolean("ach_1000", false)
+            var ach_10000 = prefs.getBoolean("ach_10000", false)
+            var ach_100000 = prefs.getBoolean("ach_100000", false)
+            var ach_1000000 = prefs.getBoolean("ach_1000000", false)
+            var ach_first = prefs.getBoolean("ach_first", false)
+            if (!ach_first){
+                edit.putBoolean("ach_first", true).apply()
+                val snack = Snackbar.make(it,"Achievement unlocked!", Snackbar.LENGTH_LONG)
+                snack.show()
+            }
+            if (coins >= 1000 && !ach_1000){
+                edit.putBoolean("ach_1000", true).apply()
+                val snack = Snackbar.make(it,"Achievement unlocked!", Snackbar.LENGTH_LONG)
+                snack.show()
+            }
+            if (coins >= 10000 && !ach_10000){
+                edit.putBoolean("ach_10000", true).apply()
+                val snack = Snackbar.make(it,"Achievement unlocked!", Snackbar.LENGTH_LONG)
+                snack.show()
+            }
+            if (coins >= 100000 && !ach_100000){
+                edit.putBoolean("ach_100000", true).apply()
+                val snack = Snackbar.make(it,"Achievement unlocked!", Snackbar.LENGTH_LONG)
+                snack.show()
+            }
+            if (coins >= 1000000 && !ach_1000000){
+                edit.putBoolean("ach_1000000", true).apply()
+                val snack = Snackbar.make(it,"Achievement unlocked!", Snackbar.LENGTH_LONG)
+                snack.show()
+            }
+
         }
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -139,64 +181,6 @@ class MainActivity : AppCompatActivity() {
         text2.text = coins.toString()
         combos.text = clicks.toString()
 
-//        cookie1.setOnClickListener{
-//            if (!running){
-//                running = true
-//                Thread(Runnable {
-//                    while(running){
-//                        Thread.sleep(tickrate.toLong())
-//                        runOnUiThread{
-//                            if (clicks>0) {
-//                                coins++
-//                                clicks--
-//                                edit.putInt("clicks", clicks)
-//                                edit.putInt("coins", coins)
-//                                edit.apply()
-//                                Log.d("Coins","$coins")
-//                                text2.text = coins.toString()
-//                                combos.text = clicks.toString()
-//                            } else if (clicks == 0){
-//                                running = false
-//                            } else {
-//                                running = false
-//                            }
-//                        }
-//                    }
-//                }).start()
-//            }
-//
-//            Log.d("Leci?", "$running")
-//            if (upgrade1lvl==0){
-//                coins++
-//                edit.putInt("coins", coins).apply()
-//                Log.d("Coins","$coins")
-//            } else {
-//                coins++
-//                coins+=upgrade1lvl
-//                edit.putInt("coins", coins).apply()
-//                Log.d("Coins","$coins")
-//            }
-//            if (upgrade2lvl==0){
-//                clicks++
-//                edit.putInt("clicks", clicks).apply()
-//            } else {
-//                clicks++
-//                clicks+=upgrade2lvl
-//                edit.putInt("clicks", clicks).apply()
-//            }
-//            text2.text = coins.toString()
-//            combos.text = clicks.toString()
-//            Log.d("TotalClicks", "$clicks")
-//            if (animEnabler){
-//                val aniSlide = AnimationUtils.loadAnimation(this, R.anim.zoom_in)
-//                cookie1.startAnimation(aniSlide)
-//            }
-//            if (soundEnabler){
-//                val mp = MediaPlayer.create(this, R.raw.glasssmash)
-//                mp.start()
-//            }
-
-//        }
 
         val switch1 = findViewById<ImageView>(R.id.buttonAchiev)
         val switch2 = findViewById<ImageView>(R.id.buttonUpgr)
