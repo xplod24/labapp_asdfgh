@@ -15,9 +15,9 @@ Ulepszeń dokonuje się za pośrednictwem zdobytych punktów, każdy poziom ulep
 Poniżej przedstawiamy rozpiskę umiejętności wraz z opisem ich działania.<br>
 
 <ul>
-<strong><li>Magic Tap</strong> -  </li>
-<strong><li>Combo Tap</strong> - </li>
-<strong><li>Combo Ticker</strong> - </li>
+<strong><li>Magic Tap</strong> - Za każdy poziom +1 kryształ po kliknięciu</li>
+<strong><li>Combo Tap</strong> - Za każdy poziom +1 combo po kliknięciu</li>
+<strong><li>Combo Ticker</strong> - Szybsze "zbijanie" combo</li>
 </ul>
 
 W interfejsie aplikacji umieściliśmy jeszcze ustawienia, tak aby użytkownik mógł dostosować aplikację pod własne preferencje.
