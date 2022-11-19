@@ -2,7 +2,7 @@
 
 <strong>Autorzy:</strong> Szymon Tempiński, Anita Adamowicz, Mateusz Cichy 
 
-<strong>Link do filmu demo z działania aplikacji (Platforma YouTube):</strong> **[DEMO](https://eff.org)**<br>
+<strong>Link do filmu demo z działania aplikacji (Platforma YouTube):</strong> **[DEMO](https://www.youtube.com/watch?v=wnJYj7qfIbA)**<br>
 
 <strong><h3>Działanie aplikacji:</h3></strong>
 Na samym początku aplikacja miała odwzorować dość popularny symulator "Cookie Clicker". Chodzi głównie o to, aby klikać w obiekt i nabijać dzięki temu punkty (walutę).W zależności od tego, jak intensywnie będzie użytkownik klikać, tym szybciej nabijać się będą punkty.Taki był zamysł, ale postanowiliśmy odświeżyć design i wymyślić coś swojego.Tym sposobem powstała aplikacja Crystal Clicker, jak sama nazwa wskazuje, zastąpiliśmy obiekt ciastka, projektem kryształu. Całkowicie postawiliśmy na odświeżony i estetyczny design, który każdemu przypadnie do gustu. Design aplikacji w większości reprezentuje grafika rastrowa, gdzie elementy jej zostały stworzone odręcznie (rysowane) w programie Affinity Photo.
@@ -24,14 +24,6 @@ W interfejsie aplikacji umieściliśmy jeszcze ustawienia, tak aby użytkownik m
 Znaleźć tam można przyciski zmiany języka, włączenie/wyłączenie animacji oraz włączenie/wyłączenie muzyki.<br>
 
 Kolejnym elementem jest system osiągnięć, które można zdobyć podczas korzystania z aplikacji.<br>
-
-Poniżej przedstawiamy rozpiskę wszystkich osiągnięć dostępnych w aplikacji:<br>
-
-1. 
-2. 
-3.
-4.
-5.
 
 
 
