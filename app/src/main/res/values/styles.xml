@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
         <style name="button_cust" parent="@android:style/Widget.Button">
-            <item name="android:gravity">center_vertical</item>
+            <item name="android:gravity">center_vertical|center_horizontal</item>
         </style>
     <style name="Widget.Theme.Labapp.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/black_overlay</item>

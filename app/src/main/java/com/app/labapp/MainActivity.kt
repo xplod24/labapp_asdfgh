@@ -1,6 +1,11 @@
 package com.app.labapp
 
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_IMMUTABLE
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
@@ -11,10 +16,13 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
 import kotlin.system.exitProcess
@@ -24,7 +32,33 @@ class MainActivity : AppCompatActivity() {
     var soundEnabler = false
     var animEnabler = false
     var running = false
+    private val channelId = "10001"
+    private val defaultChannelId = "default"
+    private var notcontent:String = ""
+    private var notcontenttitle:String = ""
 
+    private fun createNotification(view: View) {
+        val notificationIntent = Intent(applicationContext, MainActivity::class.java)
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val builder = NotificationCompat.Builder(applicationContext, defaultChannelId)
+        notificationIntent.putExtra("fromNotification", true)
+        notificationIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+        val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, FLAG_IMMUTABLE)
+        builder.setContentTitle(notcontenttitle)
+        builder.setContentIntent(pendingIntent)
+        builder.setContentText(notcontent)
+        builder.setSmallIcon(R.mipmap.ic_launcher)
+        builder.setAutoCancel(true)
+        builder.setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val importance = NotificationManager.IMPORTANCE_HIGH
+            val notificationChannel = NotificationChannel(channelId, "NOTIFICATION_CHANNEL_NAME", importance)
+            builder.setChannelId(channelId)
+            notificationManager.createNotificationChannel(notificationChannel)
+        }
+        notificationManager.notify(System.currentTimeMillis().toInt(), builder.build())
+    }
 //    override fun onRestart() {
 //        this.recreate()
 //        super.onRestart()
@@ -40,7 +74,11 @@ class MainActivity : AppCompatActivity() {
 //        var ach_first = prefs.getBoolean("ach_first", false)
 
         var ach_all = prefs.getBoolean("ach_all", false)
+        val a3:String = resources.getString(R.string.ach_unl)
 
+        fun concat(s1: String, s2: String): String {
+            return "$s1 $s2"
+        }
 
         val text2 = findViewById<TextView>(R.id.cookiesCount)
         val combos = findViewById<TextView>(R.id.comboView)
@@ -58,31 +96,30 @@ class MainActivity : AppCompatActivity() {
         animEnabler = animationEnable
         running = true
         text2.setText(coins.toString())
-        cookie1.setOnClickListener{
-            if (!running){
-                running = true
-                Thread(Runnable {
-                    while(running){
-                        Thread.sleep(tickrate.toLong())
-                        runOnUiThread{
-                            if (clicks>0) {
-                                coins++
-                                clicks--
-                                edit.putInt("clicks", clicks)
-                                edit.putInt("coins", coins)
-                                edit.apply()
-                                Log.d("Coins","$coins")
-                                text2.text = coins.toString()
-                                combos.text = clicks.toString()
-                            } else if (clicks == 0){
-                                running = false
-                            } else {
-                                running = false
-                            }
+        Thread(Runnable {
+            while(running){
+                Thread.sleep(tickrate.toLong())
+                    runOnUiThread{
+                        if (clicks>0) {
+                            coins++
+                            coins+=upgrade2lvl
+                            clicks--
+                            clicks-=upgrade2lvl
+                            text2.text = coins.toString()
+                            combos.text = clicks.toString()
+                        } else if (clicks == 0){
+                            running = false
+                        } else {
+                            running = false
+                            clicks = 0
                         }
+                        edit.putInt("clicks", clicks)
+                        edit.putInt("coins", coins)
+                        Log.d("Coins","$coins")
                     }
-                }).start()
-            }
+                }
+            }).start()
+        cookie1.setOnClickListener{
             Log.d("Leci?", "$running")
             if (upgrade1lvl==0){
                 coins++
@@ -119,30 +156,50 @@ class MainActivity : AppCompatActivity() {
             var ach_100000 = prefs.getBoolean("ach_100000", false)
             var ach_1000000 = prefs.getBoolean("ach_1000000", false)
             var ach_first = prefs.getBoolean("ach_first", false)
+            val name1:String = resources.getString(R.string.ach_1000)
+            val name2:String = resources.getString(R.string.ach_10000)
+            val name3:String = resources.getString(R.string.ach_100000)
+            val name4:String = resources.getString(R.string.ach_1000000)
+            val name5:String = resources.getString(R.string.ach_first)
             if (!ach_first){
                 edit.putBoolean("ach_first", true).apply()
-                val snack = Snackbar.make(it,"Achievement unlocked!", Snackbar.LENGTH_LONG)
-                snack.show()
+                val message = concat(a3, name5)
+//                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                notcontenttitle = a3
+                notcontent = name5
+                createNotification(cookie1)
             }
             if (coins >= 1000 && !ach_1000){
                 edit.putBoolean("ach_1000", true).apply()
-                val snack = Snackbar.make(it,"Achievement unlocked!", Snackbar.LENGTH_LONG)
-                snack.show()
+                val message = concat(a3, name1)
+//                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                notcontenttitle = a3
+                notcontent = name1
+                createNotification(cookie1)
             }
             if (coins >= 10000 && !ach_10000){
                 edit.putBoolean("ach_10000", true).apply()
-                val snack = Snackbar.make(it,"Achievement unlocked!", Snackbar.LENGTH_LONG)
-                snack.show()
+                val message = concat(a3, name2)
+//                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                notcontenttitle = a3
+                notcontent = name2
+                createNotification(cookie1)
             }
             if (coins >= 100000 && !ach_100000){
                 edit.putBoolean("ach_100000", true).apply()
-                val snack = Snackbar.make(it,"Achievement unlocked!", Snackbar.LENGTH_LONG)
-                snack.show()
+                val message = concat(a3, name3)
+//                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                notcontenttitle = a3
+                notcontent = name3
+                createNotification(cookie1)
             }
             if (coins >= 1000000 && !ach_1000000){
                 edit.putBoolean("ach_1000000", true).apply()
-                val snack = Snackbar.make(it,"Achievement unlocked!", Snackbar.LENGTH_LONG)
-                snack.show()
+                val message = concat(a3, name4)
+//                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                notcontenttitle = a3
+                notcontent = name4
+                createNotification(cookie1)
             }
 
         }
@@ -178,6 +235,7 @@ class MainActivity : AppCompatActivity() {
         Log.d("CoinsCreate", "$coins")
         soundEnabler = sound
         animEnabler = animationEnable
+        running = true
         text2.text = coins.toString()
         combos.text = clicks.toString()
 
@@ -187,13 +245,16 @@ class MainActivity : AppCompatActivity() {
 
         // achievements
         switch1.setOnClickListener{
+            running = false
+            edit.apply()
             startActivity(Intent(this@MainActivity, AchievementsActivity::class.java))
         }
 
         // upgrades
         switch2.setOnClickListener{
-            startActivity(Intent(this@MainActivity, UpgradesActivity::class.java))
             running = false
+            edit.apply()
+            startActivity(Intent(this@MainActivity, UpgradesActivity::class.java))
         }
 
     }
@@ -221,5 +282,7 @@ class MainActivity : AppCompatActivity() {
             super.onOptionsItemSelected(item)
         }
     }
+
+
 }
 

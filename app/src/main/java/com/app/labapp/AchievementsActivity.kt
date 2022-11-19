@@ -88,7 +88,7 @@ class AchievementsActivity : AppCompatActivity() {
         }
         if (ach_first&&ach_1000&&ach_10000&&ach_100000&&ach_1000000&&ach_up1_10&&ach_up1_15&&ach_up1_20&&ach_up1_5&&ach_up2_10&&ach_up2_15&&ach_up2_20&&ach_up2_5&&ach_up3_10&&ach_up3_15&&ach_up3_20&&ach_up3_5){
             edit.putBoolean("ach_all", true)
-
+            findViewById<LinearLayout>(R.id.ach_all).visibility = View.VISIBLE
         }
     }
     override fun onSupportNavigateUp(): Boolean {

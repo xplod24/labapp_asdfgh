@@ -102,4 +102,6 @@
 
     <string name="ach_all">Crsytal King</string>
     <string name="ach_all_desc">You\'ve unlocked all achievements!</string>
+    <string name="ach_unl">Achievement Unlocked!</string>
+    <string name="up_max">Max lvl reached!</string>
 </resources>

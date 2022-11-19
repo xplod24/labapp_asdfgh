@@ -51,7 +51,6 @@ class SettingsActivity : AppCompatActivity() {
             Snackbar.make(findViewById(R.id.main_settings), message, Snackbar.LENGTH_SHORT).show()
             Log.d("Soundtoggle", "toggled")
             Log.d("Soundtoggle", "$sound")
-//            Toast.makeText(this@SettingsActivity, message, Toast.LENGTH_SHORT).show()
         }
         toggleAnimations?.setOnCheckedChangeListener { _, isChecked ->
             if(isChecked) prefs.edit().putBoolean("animation", true).apply() else prefs.edit().putBoolean("animation", false).apply()
@@ -59,7 +58,6 @@ class SettingsActivity : AppCompatActivity() {
             Snackbar.make(findViewById(R.id.main_settings), message, Snackbar.LENGTH_SHORT).show()
             Log.d("Animtoggle", "toggled")
             Log.d("Animtoggle", "$animationEnable")
-//            Toast.makeText(this@SettingsActivity, message, Toast.LENGTH_SHORT).show()
         }
         toggleLang?.setOnCheckedChangeListener { _, isChecked ->
             if(isChecked) {
@@ -89,7 +87,6 @@ class SettingsActivity : AppCompatActivity() {
             var storedLang = prefs.getString("lang", "en")
             Log.d("LangToggle", "toggled")
             Log.d("Langtoggle", "$storedLang")
-//            Toast.makeText(this@SettingsActivity, message, Toast.LENGTH_SHORT).show()
         }
 
     }
